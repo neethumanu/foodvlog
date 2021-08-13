@@ -1,0 +1,57 @@
+{% extends 'base.html'%}
+{% load static %}
+{% block content %}
+
+                <div class="dropdown">
+                        <button class="dropbtn">Filter</button>
+                        <div class="dropdown-content">
+                             <a href="{{i.get_url}}" >All</a>
+                             {% for i in ct %}
+                             <a href="{{i.get_url}}">{{i.name}}</a>
+
+                            {% endfor %}
+                         </div>
+                    </div>
+
+            <div class="row">
+                 {% for i in pg.object_list %}
+               <div class="col-md-4 margin_top_30" >
+x                    <div class="full fr">
+                       <a href="{{i.get_url}}">  <img class="img-responsive" src="{{i.img.url}}" alt="#" style="width:600px;height:250px" /></a>
+                    </div>
+                    <div class="full text_align_left">
+                        <h3 class="white_font" ><a href="{{i.get_url}}">{{i.name}}</a><br></h3>
+<!--                        <p><strong class="theme_blue" >{{i.desc|truncatechars:17}}</strong></p><br>Stock left:{{i.stock}}<br>-->
+<!--                        <b> price: {{i.price}}</b><br></br>Availability:{{i.available}}-->
+
+                    </div>
+                </div>
+<!--                <a href="{{i.get_url}}"><b>{{i.name}}</b></a>-->
+                {% endfor %}
+            </div><br>
+<!--            <div class="row">-->
+<!--                 {% for i in pg.objects_list %}-->
+<!--               <div class="col-md-4 margin_top_30">-->
+
+<!--                    <div class="full fr">-->
+<!--                       <a href="{{i.get_url}}">  <img class="img-responsive" src="{{i.img.url}}" alt="#" style="width:600px;height:250px" /></a>-->
+<!--                    </div>-->
+<!--                    <div class="full text_align_left">-->
+<!--                        <h3 class="white_font" href="{{i.get_url}}">{{i.name}}<br></h3>-->
+<!--&lt;!&ndash;                        <p><strong class="theme_blue" >{{i.desc|truncatechars:17}}</strong></p><br>Stock left:{{i.stock}}<br>&ndash;&gt;-->
+<!--&lt;!&ndash;                        <b> price: {{i.price}}</b><br></br>Availability:{{i.available}}&ndash;&gt;-->
+
+<!--                    </div>-->
+<!--                </div>-->
+<!--&lt;!&ndash;                <a href="{{i.get_url}}"><b>{{i.name}}</b></a>&ndash;&gt;-->
+
+<!--                {% endfor %}-->
+<!--            </div>-->
+<br>
+<center>
+    {% for p in pg.paginator.page_range %}
+    <a href="?page={{p}}" class="btn btn-light btn-sm {% if pg.number == p %} active {% endif %}"> {{p}}</a>
+    {% endfor %}
+</center>
+
+ {% endblock %}
